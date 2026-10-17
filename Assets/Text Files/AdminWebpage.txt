@@ -1,0 +1,369 @@
+-------HTML-------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | Career Compass</title>
+<link rel="stylesheet" href="Admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="top-nav">
+    <div class="nav-left">
+        <div class="hamburger" onclick="toggleSidebar()">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="logo">
+            🧭 Career Compass <span class="admin-badge">ADMIN MODE</span>
+        </div>
+    </div>
+
+    <div class="nav-right">
+        <div class="notification">
+            🔔
+            <span class="badge">3</span>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        <div class="avatar"></div>
+    </div>
+</nav>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+    <ul>
+        <li>Overview</li>
+        <li>User Management</li>
+        <li>Content Editor</li>
+        <li>Analytics</li>
+        <li>System Logs</li>
+    </ul>
+</aside>
+
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- MAIN CONTENT -->
+<main class="dashboard">
+
+    <!-- Search -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search Users or Content..." onkeyup="filterTable()">
+    </div>
+
+    <!-- Quick Stats -->
+    <section class="stats">
+        <div class="stat-card"> <h3>1,284</h3> <p>Total Students</p> </div>
+        <div class="stat-card"> <h3>342</h3> <p>Active Sessions</p> </div>
+        <div class="stat-card"> <h3>27</h3> <p>Pending Queries</p> </div>
+        <div class="stat-card"> <h3>94%</h3> <p>Success Rate</p> </div>
+    </section>
+
+    <!-- User Table -->
+    <section class="table-section">
+        <h2>Recent Sign-Ups</h2>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tushar Thakur</td>
+                    <td>tushar@email.com</td>
+                    <td><span class="status active">Active</span></td>
+                    <td><button class="edit-btn">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Riya Sharma</td>
+                    <td>riya@email.com</td>
+                    <td><span class="status inactive">Inactive</span></td>
+                    <td><button class="edit-btn">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Arjun Mehta</td>
+                    <td>arjun@email.com</td>
+                    <td><span class="status active">Active</span></td>
+                    <td><button class="edit-btn">Edit</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Chart Placeholder -->
+    <section class="chart-section">
+        <h2>Student Growth</h2>
+        <div class="chart-placeholder">
+            Growth Chart Placeholder
+        </div>
+    </section>
+
+</main>
+
+<script src="Admin.js"></script>
+</body>
+</html>
+
+-----CSS-----
+:root {
+    --bg-main: #0a0f1e;
+    --text-main: #ffffff;
+    --card-bg: rgba(255,255,255,0.05);
+    --gradient-main: linear-gradient(90deg,#ff6ec4,#7873f5,#3b82f6);
+}
+
+body.light-mode {
+    --bg-main: #ffffff;
+    --text-main: #111111;
+    --card-bg: rgba(0,0,0,0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    transition: 0.3s ease;
+}
+
+/* NAVBAR */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.admin-badge {
+    background: var(--gradient-main);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    margin-left: 10px;
+    color: white;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.notification {
+    position: relative;
+    font-size: 1.2rem;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: red;
+    color: white;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+.theme-toggle {
+    background: var(--gradient-main);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: var(--gradient-main);
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 230px;
+    height: 100%;
+    background: rgba(15,23,42,0.95);
+    padding: 80px 20px;
+    transition: 0.4s ease;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+/* DASHBOARD */
+.dashboard {
+    padding: 40px 80px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 30px;
+    border: none;
+    background: var(--card-bg);
+    color: var(--text-main);
+    margin-bottom: 40px;
+}
+
+/* STATS */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 25px;
+}
+
+.stat-card {
+    padding: 25px;
+    border-radius: 18px;
+    background: var(--card-bg);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+}
+
+.stat-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    padding: 2px;
+    background: var(--gradient-main);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+}
+
+.stat-card h3 {
+    font-size: 1.8rem;
+}
+
+/* TABLE */
+.table-section {
+    margin-top: 60px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+}
+
+th {
+    background: var(--card-bg);
+}
+
+tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.status.active {
+    color: #22c55e;
+}
+
+.status.inactive {
+    color: #ef4444;
+}
+
+.edit-btn {
+    background: var(--gradient-main);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+}
+
+/* CHART */
+.chart-section {
+    margin-top: 60px;
+}
+
+.chart-placeholder {
+    margin-top: 20px;
+    height: 250px;
+    border-radius: 20px;
+    background: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+-----JS-----
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("active");
+}
+
+function toggleTheme() {
+    const body = document.body;
+    const btn = document.querySelector(".theme-toggle");
+
+    body.classList.toggle("light-mode");
+
+    if (body.classList.contains("light-mode")) {
+        btn.textContent = "☀️";
+        localStorage.setItem("theme", "light");
+    } else {
+        btn.textContent = "🌙";
+        localStorage.setItem("theme", "dark");
+    }
+}
+
+window.onload = function() {
+    const saved = localStorage.getItem("theme");
+    const btn = document.querySelector(".theme-toggle");
+
+    if (saved === "light") {
+        document.body.classList.add("light-mode");
+        btn.textContent = "☀️";
+    }
+};
+
+function filterTable() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("#userTable tbody tr");
+
+    rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(input) ? "" : "none";
+    });
+}

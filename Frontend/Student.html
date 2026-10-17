@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Strategic Portal | Career Compass</title>
+    <link rel="stylesheet" href="Student.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+
+    <nav class="top-nav">
+        <div class="nav-left">
+            <div class="hamburger" onclick="toggleSidebar()">
+                <span></span><span></span><span></span>
+            </div>
+            <div class="logo">🧭 Career Compass</div>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" onclick="toggleTheme()">☀️</button>
+            <button onclick="logout()" class="logout-btn">Initialize Logout</button>
+            <div class="avatar" onclick="openProfileModal()"></div>
+        </div>
+    </nav>
+
+    <div class="portal-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <span class="sub-title">NAVIGATION</span>
+            </div>
+            <ul>
+                <li class="active" onclick="showSection('dashboard')"><a>📊 My Strategic Dashboard</a></li>
+                <li onclick="showSection('roadmap')"><a>🗺️ Career Roadmap</a></li>
+                <li onclick="showSection('assessments')"><a>📝 Verified Assessments</a></li>
+                <li onclick="showSection('corporate')"><a>🏢 Corporate Matching</a></li>
+                <li onclick="showSection('settings')"><a>⚙️ Platform Settings</a></li>
+            </ul>
+        </aside>
+
+        <main class="dashboard" id="mainContent">
+            
+            <div id="default-dashboard">
+                <section class="welcome">
+                    <span class="badge">ACADEMIC YEAR 2026</span>
+                    <h1 id="welcomeText">Welcome Back, User 👋</h1>
+                    <p class="section-desc">Your strategic roadmap is active. Follow your personalized roadmap to maximize placement potential.</p>
+                    <div class="progress-container">
+                        <span class="progress-label">Strategic Profile Completion</span>
+                        <div class="progress-bar"><div class="progress-fill"></div></div>
+                        <span class="progress-text">75% Complete</span>
+                    </div>
+                </section>
+
+                <section class="cards">
+                    <div class="card">
+                        <div class="card-icon">🎯</div>
+                        <h3 id="goalCardTitle">Current Strategic Goal</h3>
+                        <p id="goalCardText">Complete your assessment to generate a personalized strategic goal.</p>
+                    </div>
+                    <div class="card milstone-card">
+                        <div class="card-icon">🏆</div>
+                        <h3>Update Your Information</h3>
+                        <p>Complete the Assessment so the Algorithm can help you!</p>
+                        <a href="Assessment.html" class="btn-primary">Begin Assessment</a>
+                    </div>
+                </section>
+            </div>
+
+            <section id="roadmap-section" class="roadmap-container" style="display: none;">
+                <div class="welcome">
+                    <span class="badge">STRATEGIC PATHWAY</span>
+                    <h1>Career Roadmap</h1>
+                    <p class="section-desc">Your personalized trajectory toward **Full-Stack Development**.</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item active">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="status-tag">In Progress</span>
+                            <h3>Phase 1: Fundamental Mastery</h3>
+                            <p>HTML5, CSS3, and Modern JavaScript (ES6+).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="construction-section" style="display: none; text-align: center; padding-top: 50px;">
+                <div class="card" style="max-width: 500px; margin: 0 auto;">
+                    <div class="card-icon" style="font-size: 4rem;">🚧</div>
+                    <h2>Under Construction</h2>
+                    <p style="margin: 20px 0; color: var(--text-muted);">The website is coming up with many new things. This feature is coming soon!</p>
+                    <button class="btn-primary-sm" onclick="showSection('dashboard')">Return to Dashboard</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div class="modal" id="profileModal">
+        <div class="modal-content profile-pop">
+            <span class="close" onclick="closeProfileModal()">&times;</span>
+            <div class="avatar-large"></div>
+            <h2 id="modalProfileName">Student Name</h2>
+            <p id="modalProfileEmail">student@university.edu</p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    <div class="cursor-glow"></div>
+
+    <script src="Student.js"></script>
+</body>
+</html>

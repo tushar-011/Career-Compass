@@ -1,0 +1,314 @@
+-----HTML-----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard | Career Compass</title>
+<link rel="stylesheet" href="Student.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- TOP NAVBAR -->
+<nav class="top-nav">
+    <div class="nav-left">
+        <div class="hamburger" onclick="toggleSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="logo">🧭 Career Compass</div>
+    </div>
+
+    <div class="nav-right">
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        <div class="avatar"></div>
+    </div>
+</nav>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+    <ul>
+        <li>My Dashboard</li>
+        <li>Career Roadmap</li>
+        <li>Skill Assessment</li>
+        <li>Job Matches</li>
+        <li>Settings</li>
+    </ul>
+</aside>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- MAIN CONTENT -->
+<main class="dashboard">
+
+    <section class="welcome">
+        <h1>Welcome Back, Tushar 👋</h1>
+        <div class="progress-container">
+            <span>Profile Completion</span>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <span class="progress-text">75%</span>
+        </div>
+    </section>
+
+    <section class="cards">
+        <div class="card">
+            <h3>🎯 Current Goal</h3>
+            <p>Become a Data Analyst by mastering Power BI and SQL.</p>
+        </div>
+
+        <div class="card">
+            <h3>🚀 Recommended Skills</h3>
+            <p>Advanced Excel, Python for Data Analysis, Dashboard Design.</p>
+        </div>
+
+        <div class="card">
+            <h3>🏆 Next Milestone</h3>
+            <p>Complete the Skill Assessment Test this week.</p>
+        </div>
+    </section>
+
+    <section class="deadlines">
+        <h2>Upcoming Deadlines</h2>
+
+        <div class="deadline-card">
+            Skill Assessment Submission - 25 Feb 2026
+        </div>
+
+        <div class="deadline-card">
+            Resume Review Session - 28 Feb 2026
+        </div>
+
+    </section>
+
+</main>
+
+<script src="Student.js"></script>
+</body>
+</html>
+
+-----CSS-----
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0f1e;
+    color: white;
+    transition: 0.3s ease;
+}
+
+/* Light Mode */
+body.light-mode {
+    background: #ffffff;
+    color: #111;
+}
+
+/* NAVBAR */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    backdrop-filter: blur(15px);
+    background: linear-gradient(90deg, rgba(255,105,180,0.15), rgba(147,112,219,0.15), rgba(59,130,246,0.15));
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+/* Hamburger */
+.hamburger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 22px;
+    height: 2px;
+    background: white;
+}
+
+body.light-mode .hamburger span {
+    background: black;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.theme-toggle {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6ec4, #7873f5);
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    height: 100%;
+    width: 250px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 80px 20px;
+    transition: 0.4s ease;
+    z-index: 1000;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 25px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* MAIN DASHBOARD */
+.dashboard {
+    padding: 60px 80px;
+}
+
+/* Welcome Section */
+.welcome h1 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+}
+
+.progress-container {
+    max-width: 500px;
+}
+
+.progress-bar {
+    height: 10px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 75%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ff6ec4, #7873f5, #3b82f6);
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    gap: 30px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    min-width: 250px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(255,255,255,0.15);
+}
+
+/* Deadlines */
+.deadlines {
+    margin-top: 70px;
+}
+
+.deadline-card {
+    margin-top: 20px;
+    padding: 18px 25px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+}
+-----JS-----
+function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+}
+
+function toggleTheme() {
+    const body = document.body;
+    const btn = document.querySelector(".theme-toggle");
+
+    body.classList.toggle("light-mode");
+
+    if (body.classList.contains("light-mode")) {
+        btn.textContent = "☀️";
+        localStorage.setItem("theme", "light");
+    } else {
+        btn.textContent = "🌙";
+        localStorage.setItem("theme", "dark");
+    }
+}
+
+window.onload = function() {
+    const savedTheme = localStorage.getItem("theme");
+    const btn = document.querySelector(".theme-toggle");
+
+    if (savedTheme === "light") {
+        document.body.classList.add("light-mode");
+        btn.textContent = "☀️";
+    } else {
+        btn.textContent = "🌙";
+    }
+};
